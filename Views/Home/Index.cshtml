@@ -1,0 +1,86 @@
+﻿@model FirstSite.Models.Account
+
+<!Doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" asp-append-version="true">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.js "></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+    <title>Home Page</title>
+</head>
+<body>
+    <header>
+        <a id="link_a" asp-route="default">FirstSite</a>
+        <form asp-controller="Home" asp-action="Login" autocomplete="off">
+            <div id="login_field">
+                <div class="flex-item">
+                    <label asp-for="Email">Էլ․ փոստ</label><br />
+                    <input type="email" asp-for="Email" id="email_1"><br />
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="flex-item">
+                    <label asp-for="Password">Գաղտնաբառը</label><br />
+                    <input type="password" asp-for="Password" id="pass_1"><br />
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <input type="submit" value="Մուտք գործել">
+            </div>
+        </form>
+    </header>
+    <content>
+        <div id="hello_page">
+            <h2>Hello! this is my first site</h2>
+            <img src="http://www.yardsignprinting.com/image/religion-and-politic/political6.png"
+                 width="250" height="250" />
+        </div>
+        <div id="register_field">
+            <h1>Ստեղծել նոր հաշիվ</h1>
+            <form asp-controller="Home" asp-action="Register" autocomplete="off">
+                <input type="text" placeholder="Անուն" class="reg_field" asp-for="Name">
+                <input type="text" placeholder="Ազգանուն" class="reg_field" asp-for="Surname"><br />
+                <input type="email" placeholder="էլ. փոստ" class="reg_field" asp-for="Email" id="email_2"><br />
+                <input type="password" placeholder="Նոր գաղտնաբառ" class="reg_field" asp-for="Password" id="pass_2">
+                <div id="birthday">
+                    <p>Ծննդյան օր</p>
+                    <select id="day" name="day" class="birthday">
+                        <option disabled selected>Օր</option>
+                        @for (int i = 1; i <= 31; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                    <select name="week" id="week" class="birthday">
+                        <option disabled selected>Ամիս</option>
+                        @{string[] week = new string[] {
+                                                                                                                                                                                                                                 "Սեպտեմբեր","Հոկտեմբեր","Նոյեմբեր","Դեկտեմբեր" };}
+                        @for (int i = 0; i < week.Length; i++)
+                        {
+                            <option value="@(i+1)">@week[i]</option>
+                        }
+                    </select>
+                    <select id="year" name="year" class="birthday">
+                        <option disabled selected>Տարի</option>
+                        @for (int i = 1905; i <= 2018; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                </div>
+                <div id="sex">
+                    <p>
+                        <input type="radio" value="man" name="gender" />Արական
+                        <input type="radio" value="woman" name="gender" />Իգական
+                    </p>
+                </div>
+                <p><input type="submit" id="register" value="Գրանցվել" /></p>
+            </form>
+        </div>
+    </content>
+    <footer>
+        <p>FirstSite &copy; 2018</p>
+    </footer>
+</body>
+</html>
